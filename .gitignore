@@ -1,0 +1,16 @@
+.venv/
+.uv-cache/
+.cache/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+задание.pdf
+mlruns/
+mlflow.db
+mlflow.db-*
+.dvc/cache/
+data/processed/
+models/*.joblib
+reports/*.png
+reports/*.json

@@ -1,0 +1,68 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.data.prepare
+    deps:
+    - path: UCI_Credit_Card.csv
+      hash: md5
+      md5: 940b416bb13a9b24bb5c9e1589284005
+      size: 2862995
+    - path: src/data/features.py
+      hash: md5
+      md5: f437f3daa3dd4efd358f8e0251326dfa
+      size: 656
+    - path: src/data/prepare.py
+      hash: md5
+      md5: d6a193c9a8b7a5644e0857e330dfce79
+      size: 1181
+    - path: src/data/validation.py
+      hash: md5
+      md5: d671d5c016390b8bdb320b70e907b135
+      size: 1553
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: a95ce9d94ae35b91a5ccb49c38aa0664.dir
+      size: 4506540
+      nfiles: 2
+  train:
+    cmd: python -m src.models.train
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: a95ce9d94ae35b91a5ccb49c38aa0664.dir
+      size: 4506540
+      nfiles: 2
+    - path: requirements.txt
+      hash: md5
+      md5: 39056d13ae454512748629534652f5b3
+      size: 228
+    - path: src/models/pipeline.py
+      hash: md5
+      md5: 6213b9b530115d96586165d22f7c3316
+      size: 930
+    - path: src/models/train.py
+      hash: md5
+      md5: f5a7f667240ab6e578ae905ee2270406
+      size: 4392
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 3e54daa117ef9ab3c89f8982034a74f3
+      size: 3274907
+    - path: reports/confusion_matrix.png
+      hash: md5
+      md5: b9947ff5621c595793ca3c502c3cffe7
+      size: 14888
+    - path: reports/feature_importance.png
+      hash: md5
+      md5: 5d17e692634cc3dd6b4423e4eea7d295
+      size: 27900
+    - path: reports/metrics.json
+      hash: md5
+      md5: 989155fcc7601dc143d3ec64b1ee61d0
+      size: 205
+    - path: reports/roc_curve.png
+      hash: md5
+      md5: e6e6092ee2ada99a5b2050dbae2ea56b
+      size: 23306

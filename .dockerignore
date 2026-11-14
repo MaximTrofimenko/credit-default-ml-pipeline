@@ -1,0 +1,9 @@
+.git
+.venv
+.uv-cache
+.dvc
+mlruns
+reports
+tests
+__pycache__
+*.pdf

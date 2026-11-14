@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Check formatting
+        run: black --check src tests
+      - name: Lint
+        run: flake8 --max-line-length=88 src tests
+      - name: Validate data
+        run: python -m src.data.validation UCI_Credit_Card.csv
+      - name: Test
+        run: pytest -q
